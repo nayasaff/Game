@@ -1,16 +1,15 @@
 package view;
-
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -49,7 +48,6 @@ import units.Status;
 
 public class Gui implements ActionListener, ItemListener, ListSelectionListener {
 	private JFrame frame;
-	private JLabel startimg;
 	private JButton start;
 	private JTextArea name;
 	private JPanel panel1;
@@ -122,33 +120,33 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 	
 	public Gui() {
 		frame = new JFrame();
-		startimg = new JLabel(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/Welcome.png"));
+		
 		start = new JButton("Start");
 		name = new JTextArea();
 		panel1 = new JPanel();
 		name2 = new JLabel("Name");
-		mapimg = new JLabel(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/map.jpeg"));
+		mapimg = new JLabel(new ImageIcon(getClass().getResource("map.jpeg") ));
 		rome = new JButton("Rome");
 		cairo = new JButton("Cairo");
 		sparta = new JButton("Sparta");
 		rome2 = new JButton("Rome");
 		cairo2 = new JButton("Cairo");
 		sparta2 = new JButton("Sparta");
-		cityimg = new JLabel(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/city.jpeg"));
+		cityimg = new JLabel(new ImageIcon(getClass().getResource("city.jpeg")));
 		panel2 = new JPanel();
 		build = new JButton("Build");
 		build2 = new JButton("Build");
-		archeryrange = new JButton(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/b3.jpeg"));
-		stable = new JButton(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/b5.jpeg"));
-		barracks = new JButton(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/b2.jpeg"));
-		farm = new JButton(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/b4.jpeg"));
-		market = new JButton(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/b6.jpeg"));
+		archeryrange = new JButton(new ImageIcon(getClass().getResource("b3.jpeg")));
+		stable = new JButton(new ImageIcon(getClass().getResource("b5.jpeg")));
+		barracks = new JButton(new ImageIcon(getClass().getResource("b2.jpeg")));
+		farm = new JButton(new ImageIcon(getClass().getResource("b4.jpeg")));
+		market = new JButton(new ImageIcon(getClass().getResource("b6.jpeg")));
 		username = new JLabel("");
 	    food = new JLabel("");
 		gold = new JLabel("");
 		turn = new JLabel("");
 		endturn = new JButton("End Turn");
-		infoimg = new JLabel(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/buildinfo.jpeg"));
+		infoimg = new JLabel(new ImageIcon(getClass().getResource("buildinfo.jpeg")));
 		buildinginfo = new JTextArea("");
 		unitInfo2 = new JTextArea("");
 		upgradea = new JButton("Upgrade");
@@ -166,7 +164,7 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 		idle = new JTextArea("");
 		marching = new JTextArea("");
 		beisiging = new JTextArea("");
-		armyimg = new JLabel(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/armyinfo.jpeg"));
+		armyimg = new JLabel(new ImageIcon(getClass().getResource("armyinfo.jpeg")));
 		map = new JButton("Map");
 		laysiege = new JButton("Lay Siege");
 		attack = new JButton("Attack");
@@ -175,10 +173,10 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		battleimg = new  JLabel(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/battle.jpeg"));
+		battleimg = new  JLabel(new ImageIcon(getClass().getResource("battle.jpeg")));
 		attack2 = new JButton("Attack");
 		unit2 = new JTextArea();
-		unitimg = new JLabel(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/unitinfo.jpeg"));
+		unitimg = new JLabel(new ImageIcon(getClass().getResource("unitinfo.jpeg")));
 		next = new JButton("Next");
 		autoresolve = new JButton("Auto\nResolve");
 		unitInfo = new JComboBox<String>(units());	
@@ -187,15 +185,14 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 		controlledcities2 = new JList<String>();
 		locateunit = new JButton("Relocate Unit");
 		defendingarmy = new JButton("Defending\nArmy");
-		defendingimg = new JLabel(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/armyInfo2.jpeg"));
+		defendingimg = new JLabel(new ImageIcon(getClass().getResource("armyInfo2.jpeg")));
 		defendingInfo = new JTextArea("");
 		enemyunit = new JComboBox<String>(units());
 		enemyinfo = new JTextArea("");
 		unitInfo3 = new JTextArea("");
 		info3 = new JComboBox<String>(units());
-		icon = new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/icon.jpeg");
-		defendingarmy2 = new JButton("Defending\nArmy");
-		
+		icon = new ImageIcon((getClass().getResource("icon.jpeg")));
+		defendingarmy2 = new JButton("Defending\nArmy");		
 		
 		
 		start.setLayout(null);
@@ -383,9 +380,8 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 				
 		);
 		
-		
-
-		frame.setContentPane(startimg);
+        start.setPreferredSize(new Dimension(150, 70)); // Set button size
+        //frame.setLayout(new BorderLayout());
 		frame.add(start);	
 		frame.add(name);
 		frame.add(panel1);
@@ -396,20 +392,45 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 		infoimg.add(upgradem);
 		frame.setTitle("Empire Building");
 		frame.setIconImage(icon.getImage());
-		frame.setSize(1280, 659);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+//        frame.pack();
+        //frame.setUndecorated(true); // Removes window borders and title bar
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+	    BufferedImage bufferedImage;
+		try {
+		    bufferedImage = ImageIO.read(getClass().getResource("Welcome.jpeg"));
+		    // Create a JLabel
+		    JLabel imageLabel = new JLabel() {
+		        @Override
+		        protected void paintComponent(Graphics g) {
+		            super.paintComponent(g);
+		            // Scale the image to fit the JLabel's size
+		            Image scaledImage = bufferedImage.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
+		            g.drawImage(scaledImage, 0, 0, this);
+		        }
+		    };
 		
+		    // Add a ComponentListener to resize the image when the frame is resized
+		    frame.addComponentListener(new java.awt.event.ComponentAdapter() {
+		        @Override
+		        public void componentResized(java.awt.event.ComponentEvent e) {
+		            imageLabel.repaint();
+		        }
+		    });
+		
+		    frame.add(imageLabel);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	    
 
-		
 	}
 	
 	
 	@SuppressWarnings("unused")
 	public static void main(String [] args) {
 		   Gui gui = new Gui();
-	
-
 			
 	}
 
@@ -591,7 +612,7 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 		}
 		
 		if(e.getSource() == unit3) {
-			frame.setContentPane(new JLabel(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/armyinfo.jpeg")));
+			frame.setContentPane(new JLabel(new ImageIcon(getClass().getResource("armyinfo.jpeg")) ));
 			frame.add(back);
 			frame.add(unitInfo3);
 			frame.revalidate();
@@ -852,7 +873,7 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 	}
 	
 	public void city2() {
-		frame.setContentPane(new JLabel(new ImageIcon("C:/Users/Bedo/eclipse-workspace/EmpireM2/src/view/city2.jpeg")));
+		frame.setContentPane(new JLabel(new ImageIcon(getClass().getResource("city2.jpeg"))) );
 		
 		for(int j =0; j < game.getPlayer().getControlledCities().get(1).getMilitaryBuildings().size();j++) {
 			if(game.getPlayer().getControlledCities().get(1).getMilitaryBuildings().get(j) instanceof ArcheryRange)
