@@ -3,30 +3,29 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 
+
+@SuppressWarnings("serial")
 public class Welcome extends JPanel {
 	
 	private Image backgroundImage;
 	private JButton startButton;
 	private JTextField nameField;
 	private JLabel nameLabel;
+	private CardLayout card;
+	private JPanel cityPanel;
 	
-	public Welcome() {
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int screenWidth = screenSize.width;
-		int screenHeight = screenSize.height;		
+	public Welcome(Dimension screenSize, CardLayout card, City cityPanel) {
+		this.card = card;
+		this.cityPanel = cityPanel;
 		
+		int screenWidth = screenSize.width;
+		int screenHeight = screenSize.height;	
 		this.setLayout(null);
 		//background image
-		ImageIcon originalImage = new ImageIcon(getClass().getResource("Welcome.jpeg"));
+		ImageIcon originalImage = new ImageIcon(getClass().getResource("welcome.jpeg"));
 		 backgroundImage = originalImage.getImage().getScaledInstance(screenWidth, screenHeight, Image.SCALE_SMOOTH);
 		 
 		 //Start button
@@ -68,11 +67,20 @@ public class Welcome extends JPanel {
         this.add(inputPanel);
 	}
 	
+	
+	public JTextField getNameField() {
+		return nameField;
+	}
+	
 	private void handleButtonClicked() {
 		if(nameField.getText().equals("")) {
 			JOptionPane.showMessageDialog(this, "Please enter your name ");	
 			nameField.setBorder(BorderFactory.createLineBorder(Color.decode("#CD3533"), 2));
 			nameLabel.setForeground(Color.decode("#CD3533"));
+		}
+		else {
+			cityPanel.setName(nameField.getText());
+			card.show(cityPanel.getParent(), "cityPanel");
 		}
 			
 		

@@ -48,14 +48,14 @@ import units.Status;
 
 public class Gui implements ActionListener, ItemListener, ListSelectionListener {
 	private JFrame frame;
-	private JButton start;
-	private JTextArea name;
-	private JPanel panel1;
-	private JLabel name2;
-	private JLabel mapimg;
-	private JButton sparta;
-	private JButton cairo;
-	private JButton rome;
+//	private JButton start;
+//	private JTextArea name;
+//	private JPanel panel1;
+//	private JLabel name2;
+//	private JLabel mapimg;
+//	private JButton sparta;
+//	private JButton cairo;
+//	private JButton rome;
 	private Game game;
 	private JLabel cityimg;
 	private JPanel panel2;
@@ -121,14 +121,7 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 	public Gui() {
 		frame = new JFrame();
 		
-		start = new JButton("Start");
-		name = new JTextArea();
-		panel1 = new JPanel();
-		name2 = new JLabel("Name");
-		mapimg = new JLabel(new ImageIcon(getClass().getResource("map.jpeg") ));
-		rome = new JButton("Rome");
-		cairo = new JButton("Cairo");
-		sparta = new JButton("Sparta");
+
 		rome2 = new JButton("Rome");
 		cairo2 = new JButton("Cairo");
 		sparta2 = new JButton("Sparta");
@@ -195,13 +188,13 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 		defendingarmy2 = new JButton("Defending\nArmy");		
 		
 		
-		start.setLayout(null);
-		name.setLayout(null);
-		panel1.setLayout(null);
-		name2.setLayout(new FlowLayout());
-		cairo.setLayout(null);
-		rome.setLayout(null);
-		sparta.setLayout(null);
+//		start.setLayout(null);
+//		name.setLayout(null);
+//		panel1.setLayout(null);
+//		name2.setLayout(new FlowLayout());
+//		cairo.setLayout(null);
+//		rome.setLayout(null);
+//		sparta.setLayout(null);
 		cairo2.setLayout(null);
 		rome2.setLayout(null);
 		sparta2.setLayout(null);
@@ -254,14 +247,7 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 			
 	
 				
-		start.setBounds(1100, 500, 150, 70);
-		name.setBounds(100,100,200,20);
-		panel1.setBounds(55, 85, 100, 50);
-		name2.setSize(50, 50);
-		panel1.add(name2);
-		cairo.setBounds(150, 200, 80, 55);
-		sparta.setBounds(850, 100, 80, 55);
-		rome.setBounds(560, 200, 80, 55);
+
 		cairo2.setBounds(150, 200, 80, 55);
 		sparta2.setBounds(850, 100, 80, 55);
 		rome2.setBounds(560, 200, 80, 55);
@@ -309,7 +295,7 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 
 		
 		
-		panel1.setBackground(new Color(255,0,0,0));
+		
 		buildinginfo.setEditable(false);
 		unitInfo2.setEditable(false);
 		idle.setEditable(false);
@@ -329,10 +315,7 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 
 	
 		
-		start.addActionListener(this);
-		cairo.addActionListener(this);
-		rome.addActionListener(this);
-		sparta.addActionListener(this);
+
 		build.addActionListener(this);
 		endturn.addActionListener(this);
 		archeryrange.addActionListener(this);
@@ -380,11 +363,7 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 				
 		);
 		
-        start.setPreferredSize(new Dimension(150, 70)); // Set button size
-        //frame.setLayout(new BorderLayout());
-		frame.add(start);	
-		frame.add(name);
-		frame.add(panel1);
+
 		infoimg.add(upgradea);
 		infoimg.add(upgrades);
 		infoimg.add(upgradeb);
@@ -437,26 +416,7 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == start) {
-			if(name.getText().equals(""))
-				JOptionPane.showMessageDialog(frame, "Please enter your name ");	
-			else {
-			   frame.setContentPane(mapimg);
-			   frame.add(rome);
-			   frame.add(sparta);
-			   frame.add(cairo);
-			   frame.revalidate();
-			}
-		}
-		if(e.getSource() == rome || e.getSource() == sparta || e.getSource() == cairo) {
-			city = (String)e.getActionCommand();
-			try {
-				game = new Game(name.getText(), (String)e.getActionCommand());
-			} catch (IOException e1) {
-				JOptionPane.showMessageDialog(frame, e1.getMessage());
-			}
-			city();
-		}
+
 		String buildings[] = {"ArcheryRange", "Barracks", "Stable", "Farm" ,"Market"};
 		if(e.getSource() == build) {
 			int n = JOptionPane.showOptionDialog(frame, "ArcheryRange 1500, Barracks 2000, Stable 2500, Farm 1000, Market 1500", "Choose a building to build", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, buildings, buildings[0]);
@@ -645,11 +605,11 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 		ArrayList<JButton> cities = new ArrayList<JButton>();
 		cities.add(rome2); cities.add(cairo2); cities.add(sparta2);	
 		if(e.getSource() == map) {
-			frame.setContentPane(mapimg);
-			frame.add(panel2);
-			cairo.setVisible(false);
-			sparta.setVisible(false);
-			rome.setVisible(false);
+//			frame.setContentPane(mapimg);
+//			frame.add(panel2);
+//			cairo.setVisible(false);
+//			sparta.setVisible(false);
+//			rome.setVisible(false);
 			frame.add(rome2);
 			frame.add(cairo2);
 			frame.add(sparta2);
@@ -821,7 +781,7 @@ public class Gui implements ActionListener, ItemListener, ListSelectionListener 
 
 	public void city() {
 		
-		username.setText(name.getText());
+		username.setText("Naya");
 		food.setText("Food :" + game.getPlayer().getFood());
 		gold.setText("Gold : " + game.getPlayer().getTreasury());
 		turn.setText("Turn : " + game.getCurrentTurnCount());
